@@ -1,0 +1,1070 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Nandagopal | DotNet Developer</title>
+    <link
+      href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600&display=swap"
+      rel="stylesheet"
+    />
+    <style>
+      html {
+        scroll-behavior: smooth;
+      }
+
+      * {
+        box-sizing: border-box;
+        margin: 0;
+        padding: 0;
+        font-family: "Poppins", sans-serif;
+      }
+
+      body {
+        background: #121212;
+        color: #fff;
+        text-align: center;
+        font-size: 1rem;
+        line-height: 1.6;
+      }
+
+      header {
+        background: #1f1f1f;
+        padding: 1.5rem;
+        box-shadow: 0 2px 10px rgba(0, 0, 0, 0.5);
+        position: relative;
+      }
+
+      .nav-toggle {
+        display: none;
+        /* Hidden by default on desktop */
+        cursor: pointer;
+        padding: 10px;
+        position: absolute;
+        right: 20px;
+        top: 50%;
+        transform: translateY(-50%);
+        z-index: 1000;
+      }
+
+      body.menu-open {
+        overflow: hidden;
+      }
+
+      .hamburger {
+        display: block;
+        width: 25px;
+        height: 3px;
+        background: #fff;
+        position: relative;
+        transition: all 0.3s ease-in-out;
+      }
+
+      .hamburger::before,
+      .hamburger::after {
+        content: "";
+        position: absolute;
+        width: 100%;
+        height: 100%;
+        background: #fff;
+        transition: all 0.3s ease-in-out;
+      }
+
+      .hamburger::before {
+        transform: translateY(-8px);
+      }
+
+      .hamburger::after {
+        transform: translateY(8px);
+      }
+
+      .nav-toggle.active .hamburger {
+        background: transparent;
+      }
+
+      .nav-toggle.active .hamburger::before {
+        transform: rotate(45deg);
+      }
+
+      .nav-toggle.active .hamburger::after {
+        transform: rotate(-45deg);
+      }
+
+      nav ul {
+        list-style: none;
+        display: flex;
+        justify-content: center;
+        gap: 1.5rem;
+      }
+
+      nav ul li a {
+        color: #fff;
+        text-decoration: none;
+        font-weight: bold;
+        font-size: 1.1rem;
+        transition: 0.3s;
+      }
+
+      nav ul li a:hover {
+        color: #6366f1;
+      }
+
+      section {
+        padding: 6rem 2rem;
+      }
+
+      section h2 {
+        margin-bottom: 2rem;
+        font-size: 2.5rem;
+        font-weight: 600;
+      }
+
+      #hero {
+        background: linear-gradient(135deg, #6366f1, #4f46e5);
+        padding: 6rem 2rem;
+        border-radius: 10px;
+        color: #e2e8f0;
+        position: relative;
+      }
+
+      #hero::before {
+        content: "";
+        position: absolute;
+        top: 0;
+        left: 0;
+        right: 0;
+        bottom: 0;
+        background: linear-gradient(
+          45deg,
+          rgba(99, 102, 241, 0.8),
+          /* Primary color with opacity */ rgba(79, 70, 229, 0.8)
+            /* Secondary color with opacity */
+        );
+        border-radius: 10px;
+        z-index: 0;
+      }
+
+      #hero h2 {
+        font-size: 3rem;
+        font-weight: 700;
+        margin-bottom: 1rem;
+        position: relative;
+        z-index: 1;
+      }
+
+      #hero p {
+        font-size: 1.5rem;
+        font-weight: 300;
+        margin-bottom: 1.5rem;
+        position: relative;
+        z-index: 1;
+      }
+
+      .cta-button {
+        display: inline-block;
+        padding: 15px 30px;
+        background: #e2e8f0;
+        color: #6366f1;
+        text-decoration: none;
+        font-size: 1.2rem;
+        border-radius: 8px;
+        transition: all 0.3s ease;
+        position: relative;
+        z-index: 1;
+        font-weight: 500;
+      }
+
+      .cta-button:hover {
+        background: #f8fafc;
+        transform: translateY(-2px);
+        box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+      }
+
+      .skills-container {
+        display: grid;
+        grid-template-columns: repeat(4, 1fr);
+        justify-content: center;
+        gap: 20px;
+        max-width: 1200px;
+        margin: 0 auto;
+      }
+
+      .skill,
+      .accomplishment,
+      .experience {
+        background: #1e1e1e;
+        height: 100%;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+        padding: 2rem;
+        text-align: center;
+        font-size: 1.8rem;
+        border-radius: 20px;
+      }
+
+      .skill:hover,
+      .skill img:hover {
+        transform: scale(1.05);
+      }
+
+      .skill img {
+        width: 80px;
+        height: 80px;
+        object-fit: contain;
+        margin-bottom: 1rem;
+        border-radius: 50rem;
+      }
+
+      .project-container,
+      .experience-container,
+      .accomplishment-container {
+        display: flex;
+        flex-direction: column;
+        gap: 3rem;
+        max-width: 1200px;
+        margin: 0 auto;
+      }
+
+      .project,
+      .experience-card,
+      .accomplishment-card {
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+        gap: 2rem;
+        background: #1e293b;
+        /* surface color */
+        border-radius: 10px;
+        overflow: hidden;
+        box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+        padding: 2rem;
+        border: 1px solid rgba(255, 255, 255, 0.1);
+      }
+
+      .project-image,
+      .experience-image,
+      .accomplishment-image {
+        width: 100%;
+        height: 300px;
+        border-radius: 10px;
+        overflow: hidden;
+        position: relative;
+        box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        background: #1a1a1a;
+      }
+
+      .project-image img,
+      .experience-image img,
+      .accomplishment-image img {
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+        border-radius: 10px;
+        transition: transform 0.3s ease;
+      }
+
+      .project-content,
+      .experience-content,
+      .accomplishment-content {
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        gap: 1.5rem;
+      }
+
+      .project-content h3,
+      .experience-header h3,
+      .accomplishment-header h3 {
+        font-size: 1.5rem;
+        color: #e2e8f0;
+        margin-bottom: 0.5rem;
+      }
+
+      .project-description,
+      .experience-description,
+      .accomplishment-description,
+      .project-implementation,
+      .key-achievements,
+      .key-highlights {
+        font-size: 1rem;
+        color: #e2e8f0;
+        opacity: 0.9;
+        line-height: 1.6;
+      }
+
+      .project-tech,
+      .tech-stack {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 0.5rem;
+        justify-content: center;
+        align-items: center;
+      }
+
+      .tag,
+      .tech-stack .tag {
+        font-size: 0.75rem;
+        padding: 0.25rem 0.75rem;
+        background: rgba(99, 102, 241, 0.1);
+        color: #818cf8;
+        border-radius: 9999px;
+      }
+
+      .issuer {
+        display: block;
+        font-size: 1.25rem;
+        color: #818cf8;
+        margin-bottom: 0.25rem;
+      }
+
+      .award-date {
+        display: block;
+        font-size: 0.875rem;
+        color: #94a3b8;
+        font-weight: 500;
+      }
+
+      .project-links {
+        display: flex;
+        gap: 1rem;
+        margin-top: auto;
+        justify-content: center;
+      }
+
+      .project-link {
+        display: inline-flex;
+        align-items: center;
+        gap: 0.5rem;
+        padding: 0.75rem 1.5rem;
+        background: #6366f1;
+        color: #e2e8f0;
+        text-decoration: none;
+        border-radius: 10px;
+        font-size: 0.875rem;
+        font-weight: 500;
+        transition: all 0.3s ease;
+      }
+
+      .project-link:hover {
+        background: #4f46e5;
+        transform: translateY(-2px);
+      }
+
+      .project:hover .project-image img,
+      .experience-card:hover .experience-image img,
+      .accomplishment-card:hover .accomplishment-image img {
+        transform: scale(1.05);
+      }
+
+      .project-implementation ul li,
+      .key-achievements ul li {
+        margin-bottom: 0.25rem;
+        line-height: 1.5;
+      }
+
+      .project-implementation p,
+      .key-achievements p {
+        font-weight: 500;
+        margin-bottom: 0.25rem;
+        color: #818cf8;
+      }
+
+      .project-implementation ul,
+      .key-achievements ul {
+        list-style: none;
+        padding-left: 0.5rem;
+        margin-top: 0.5rem;
+      }
+
+      .project:hover,
+      .experience-card:hover,
+      .accomplishment-card:hover {
+        transform: translateY(-2px);
+        transition: transform 0.3s ease;
+      }
+
+      #contact {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        gap: 3rem;
+        padding: 6rem 2rem;
+        background: linear-gradient(135deg, #6366f1, #4f46e5);
+        border-radius: 10px;
+        position: relative;
+      }
+
+      #contact::before {
+        content: "";
+        position: absolute;
+        top: 0;
+        left: 0;
+        right: 0;
+        bottom: 0;
+        background: linear-gradient(
+          45deg,
+          rgba(99, 102, 241, 0.8),
+          rgba(79, 70, 229, 0.8)
+        );
+        border-radius: 10px;
+        z-index: 0;
+      }
+
+      #contact h2 {
+        position: relative;
+        z-index: 1;
+        color: #e2e8f0;
+      }
+
+      .contact-container {
+        display: flex;
+        justify-content: space-between;
+        gap: 3rem;
+        width: 100%;
+        max-width: 1200px;
+        position: relative;
+        z-index: 1;
+      }
+
+      .contact-info {
+        flex: 1;
+        text-align: left;
+        color: #e2e8f0;
+        padding: 2rem;
+        background: rgba(255, 255, 255, 0.1);
+        border-radius: 10px;
+        border: 1px solid rgba(255, 255, 255, 0.2);
+      }
+
+      .contact-info a {
+        color: #e2e8f0;
+        text-decoration: none;
+        font-size: 1.5rem;
+        font-weight: 600;
+        transition: all 0.3s ease;
+        display: block;
+        margin-top: 0.5rem;
+      }
+
+      .contact-info a:hover {
+        color: #f8fafc;
+        transform: translateY(-2px);
+      }
+
+      .contact-info p {
+        margin-bottom: 1rem;
+      }
+
+      form {
+        flex: 1;
+        display: flex;
+        flex-direction: column;
+        gap: 15px;
+        width: 100%;
+        max-width: 500px;
+      }
+
+      input,
+      textarea {
+        width: 100%;
+        padding: 12px;
+        background: rgba(255, 255, 255, 0.1);
+        border: 1px solid rgba(255, 255, 255, 0.2);
+        border-radius: 8px;
+        color: #e2e8f0;
+        font-size: 1rem;
+        transition: all 0.3s ease;
+      }
+
+      input::placeholder,
+      textarea::placeholder {
+        color: rgba(226, 232, 240, 0.6);
+      }
+
+      input:focus,
+      textarea:focus {
+        outline: none;
+        background: rgba(255, 255, 255, 0.15);
+        border-color: rgba(255, 255, 255, 0.3);
+      }
+
+      button {
+        padding: 12px 25px;
+        background: #e2e8f0;
+        color: #6366f1;
+        font-size: 1.1rem;
+        font-weight: 500;
+        border: none;
+        border-radius: 8px;
+        cursor: pointer;
+        transition: all 0.3s ease;
+      }
+
+      button:hover {
+        background: #f8fafc;
+        transform: translateY(-2px);
+        box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+      }
+
+      footer {
+        padding: 1rem;
+        background: #1f1f1f;
+        margin-top: 2rem;
+        font-size: 1rem;
+      }
+
+      /* Large Devices (laptops/desktops, up to 1200px) */
+      @media screen and (max-width: 1200px) {
+        .skills-container,
+        .project-container,
+        .experience-container,
+        .accomplishment-container {
+          max-width: 90%;
+        }
+
+        .skills-container {
+          grid-template-columns: repeat(3, 1fr);
+        }
+      }
+
+      /* Medium Devices (tablets, up to 992px) */
+      @media screen and (max-width: 992px) {
+        /* Adjust section padding */
+        section {
+          padding: 4rem 1.5rem;
+        }
+
+        /* Skills grid adjustment */
+        .skills-container {
+          grid-template-columns: repeat(2, 1fr);
+          gap: 15px;
+        }
+
+        /* Project, Experience, and Accomplishment cards */
+        .project,
+        .experience-card,
+        .accomplishment-card {
+          grid-template-columns: 1fr;
+        }
+
+        .project-image,
+        .experience-image,
+        .accomplishment-image {
+          height: 250px;
+        }
+
+        .project-content,
+        .experience-content,
+        .accomplishment-content {
+          padding: 1.5rem 0;
+        }
+
+        /* Contact section */
+        .contact-container {
+          flex-direction: column;
+          gap: 2rem;
+        }
+
+        .contact-info,
+        form {
+          width: 100%;
+          max-width: 100%;
+        }
+      }
+
+      /* Small Devices (landscape phones, up to 768px) */
+      @media screen and (max-width: 768px) {
+        /* Header and Navigation */
+        header {
+          padding: 1rem;
+        }
+
+        .nav-toggle {
+          display: block;
+          /* Show hamburger on mobile */
+        }
+
+        nav {
+          position: fixed;
+          top: 0;
+          left: 0;
+          width: 100%;
+          height: 100vh;
+          background: #1f1f1f;
+          padding: 80px 20px 20px;
+          transform: translateX(-100%);
+          transition: transform 0.3s ease-in-out;
+          z-index: 999;
+        }
+
+        nav.active {
+          transform: translateX(0);
+        }
+
+        nav ul {
+          flex-direction: column;
+          gap: 2rem;
+          padding: 0.5rem 0;
+        }
+
+        nav ul li a {
+          font-size: 1.2rem;
+          padding: 10px 0;
+          display: block;
+        }
+
+        /* Hero Section */
+        #hero {
+          padding: 4rem 1rem;
+        }
+
+        #hero h2 {
+          font-size: 2.2rem;
+        }
+
+        #hero p {
+          font-size: 1.2rem;
+        }
+
+        .cta-button {
+          padding: 12px 24px;
+          font-size: 1rem;
+        }
+
+        /* Section Headers */
+        section h2 {
+          font-size: 2rem;
+          margin-bottom: 1.5rem;
+        }
+
+        /* Skills Section */
+        .skill {
+          padding: 1.5rem;
+          font-size: 1.4rem;
+        }
+
+        .skill img {
+          width: 60px;
+          height: 60px;
+        }
+
+        /* Project Cards */
+        .project-tech,
+        .tech-stack {
+          justify-content: center;
+          flex-wrap: wrap;
+        }
+
+        .tag {
+          font-size: 0.7rem;
+          padding: 0.2rem 0.5rem;
+        }
+
+        .project-links {
+          flex-direction: column;
+          gap: 0.8rem;
+        }
+
+        .project-link {
+          width: 100%;
+          text-align: center;
+        }
+
+        /* Form Elements */
+        input,
+        textarea {
+          padding: 10px;
+          font-size: 0.9rem;
+        }
+
+        button {
+          width: 100%;
+        }
+      }
+
+      /* Extra Small Devices (phones, up to 576px) */
+      @media screen and (max-width: 576px) {
+        /* Hero Section */
+        #hero h2 {
+          font-size: 1.8rem;
+        }
+
+        #hero p {
+          font-size: 1rem;
+        }
+
+        /* Skills Grid */
+        .skills-container {
+          grid-template-columns: 1fr;
+        }
+
+        /* Project and Experience Cards */
+        .project-image,
+        .experience-image,
+        .accomplishment-image {
+          height: 200px;
+        }
+
+        .project-content h3,
+        .experience-header h3,
+        .accomplishment-header h3 {
+          font-size: 1.3rem;
+        }
+
+        .project-description,
+        .experience-description,
+        .accomplishment-description {
+          font-size: 0.9rem;
+        }
+
+        /* Contact Section */
+        #contact {
+          padding: 4rem 1rem;
+        }
+
+        .contact-info a {
+          font-size: 1.2rem;
+        }
+      }
+
+      /* Height-based media queries for better responsiveness */
+      @media screen and (max-height: 700px) {
+        section {
+          padding: 3rem 1rem;
+        }
+
+        #hero {
+          padding: 3rem 1rem;
+        }
+      }
+
+      /* Ensure touch targets are large enough on mobile */
+      @media (hover: none) and (pointer: coarse) {
+        nav ul li a,
+        .project-link,
+        .cta-button,
+        button {
+          min-height: 44px;
+          padding: 12px 20px;
+        }
+
+        input,
+        textarea {
+          min-height: 44px;
+        }
+      }
+
+      /* Dark mode optimization */
+      @media (prefers-color-scheme: dark) {
+        .skill,
+        .project,
+        .experience-card,
+        .accomplishment-card {
+          background: #1e1e1e;
+        }
+
+        input,
+        textarea {
+          background: rgba(255, 255, 255, 0.1);
+        }
+      }
+
+      /* Print styles for better printing */
+      @media print {
+        .project-links,
+        .cta-button,
+        form {
+          display: none;
+        }
+
+        body {
+          color: #000;
+          background: #fff;
+        }
+
+        section {
+          page-break-inside: avoid;
+        }
+      }
+    </style>
+    <script>
+      function sendEmail(event) {
+        event.preventDefault();
+        let name = document.querySelector("input[type='text']").value;
+        let email = document.querySelector("input[type='email']").value;
+        let message = document.querySelector("textarea").value;
+        let mailtoLink = `mailto:nandagopalng7@gmail.com?subject=Message from ${name}&body=${encodeURIComponent(
+          message
+        )}`;
+        window.location.href = mailtoLink;
+      }
+
+      document.addEventListener("DOMContentLoaded", function () {
+        const navToggle = document.querySelector(".nav-toggle");
+        const nav = document.querySelector("nav");
+        const body = document.body;
+        const menuLinks = document.querySelectorAll("nav a");
+
+        // Toggle menu
+        navToggle.addEventListener("click", function () {
+          navToggle.classList.toggle("active");
+          nav.classList.toggle("active");
+          body.classList.toggle("menu-open");
+        });
+
+        // Close menu when clicking a link
+        menuLinks.forEach((link) => {
+          link.addEventListener("click", () => {
+            navToggle.classList.remove("active");
+            nav.classList.remove("active");
+            body.classList.remove("menu-open");
+          });
+        });
+
+        // Close menu when resizing to desktop view
+        window.addEventListener("resize", function () {
+          if (window.innerWidth > 768) {
+            navToggle.classList.remove("active");
+            nav.classList.remove("active");
+            body.classList.remove("menu-open");
+          }
+        });
+      });
+    </script>
+  </head>
+
+  <body>
+    <header>
+      <div class="nav-toggle">
+        <span class="hamburger"></span>
+      </div>
+      <nav>
+        <ul>
+          <li><a href="#skills">Skills</a></li>
+          <li><a href="#projects">Projects</a></li>
+          <li><a href="#experience">Work Experience</a></li>
+          <li><a href="#accomplishments">Accomplishments</a></li>
+          <li><a href="#contact">Contact</a></li>
+        </ul>
+      </nav>
+    </header>
+
+    <section id="hero">
+      <h2>Nandagopal</h2>
+      <p>.NET Developer | Problem Solver | Continuous Learner</p>
+      <a href="#contact" class="cta-button">Get in Touch</a>
+    </section>
+
+    <section id="skills">
+      <h2>Skills</h2>
+      <div class="skills-container">
+        <div class="skill">
+          <img src="aspnetcore.png" alt="ASP.NET Core" />ASP.NET Core
+        </div>
+        <div class="skill">
+          <img src="sqlserver.png" alt="SQL Server" />SQL Server
+        </div>
+        <div class="skill"><img src="linq.png" alt="LINQ" />LINQ</div>
+        <div class="skill"><img src="csharp.png" alt="C#" />C#</div>
+        <div class="skill">
+          <img src="javascript.png" alt="JavaScript" />JavaScript
+        </div>
+        <div class="skill"><img src="html.png" alt="HTML" />HTML</div>
+        <div class="skill"><img src="css.png" alt="CSS" />CSS</div>
+        <div class="skill"><img src="git.png" alt="GIT" />GIT</div>
+      </div>
+    </section>
+
+    <section id="projects">
+      <h2>Projects</h2>
+      <div class="project-container">
+        <div class="project">
+          <div class="project-image">
+            <img src="project1.png" alt="Project Screenshot" />
+          </div>
+          <div class="project-content">
+            <h3>Forkify</h3>
+            <p class="project-description">
+              A dynamic Recipe Explorer application that enables users to
+              search, save, and discover culinary recipes. Built with a modern
+              tech stack and following the Model-View-Controller (MVC)
+              architectural pattern for maintainable, scalable code
+              organization.
+            </p>
+            <div class="project-tech">
+              <span class="tag">JavaScript</span>
+              <span class="tag">HTML5</span>
+              <span class="tag">CSS3</span>
+              <span class="tag">REST API</span>
+              <span class="tag">MVC Pattern</span>
+              <span class="tag">Local Storage</span>
+            </div>
+            <div class="project-implementation">
+              <p>Technical Implementation:</p>
+              <ul>
+                • Implemented MVC architecture for separation of concerns •
+                Integrated Fetch API for seamless data retrieval • Utilized
+                Publisher-Subscriber pattern for state management • Implemented
+                client-side storage for offline functionality
+              </ul>
+            </div>
+            <div class="project-links">
+              <a href="#" class="project-link">Live Demo</a>
+              <a href="#" class="project-link">Source Code</a>
+            </div>
+          </div>
+        </div>
+        <!-- Repeat for other projects -->
+      </div>
+    </section>
+
+    <section id="experience">
+      <h2>Work Experience</h2>
+      <div class="experience-container">
+        <div class="experience-card">
+          <div class="experience-image">
+            <img src="infosys.png" alt="Infosys Logo" />
+          </div>
+          <div class="experience-content">
+            <div class="experience-header">
+              <h3>Backend Developer</h3>
+              <span class="company">Infosys</span>
+              <span class="duration">Nov 2021 - Present</span>
+            </div>
+            <div class="experience-description">
+              <p>
+                Developed scalable RESTful APIs using ASP.NET Core and the
+                Controller-Service-Repository pattern, optimizing SQL Server
+                operations with efficient queries and stored procedures.
+                Collaborated within an Agile SDLC to deliver secure,
+                high-performance endpoints aligned with industry best practices.
+              </p>
+            </div>
+            <div class="key-achievements">
+              <p>Key Achievements:</p>
+              <ul>
+                • Engineered RESTful APIs for the Client Data Access page,
+                eliminating manual script preparation and streamlining client
+                access management, resulting in a 100% reduction in effort •
+                Developed an optimized stored procedure to delete menu items in
+                bulk for 100,000 products, reducing execution time by 80% from
+                48 hours to just 8 hours • Contributed to project estimation for
+                transitioning from legacy WPF technology to ASP.NET Core,
+                identifying the required components and reusable assets to
+                streamline development in the new framework
+              </ul>
+            </div>
+            <div class="tech-stack">
+              <span class="tag">C#</span>
+              <span class="tag">.NET Core</span>
+              <span class="tag">SQL</span>
+              <span class="tag">LINQ</span>
+              <span class="tag">Agile</span>
+              <span class="tag">SDLC</span>
+            </div>
+          </div>
+        </div>
+        <!-- Repeat for other experiences -->
+      </div>
+    </section>
+
+    <section id="accomplishments">
+      <h2>Accomplishments</h2>
+      <div class="accomplishment-container">
+        <div class="accomplishment-card">
+          <div class="accomplishment-image">
+            <img src="Insta2024.png" alt="Insta Award 2024 Certificate" />
+          </div>
+          <div class="accomplishment-content">
+            <div class="accomplishment-header">
+              <h3>Insta Award</h3>
+              <span class="issuer">Insta Awards - Infosys</span>
+              <span class="award-date">September 2024</span>
+            </div>
+            <div class="accomplishment-description">
+              <p>
+                Restored a subsidiary database critical to the primary database
+                operations, which undergoes annual updates. Successfully
+                converted a 2022 SQL Server backup to the 2019 version and
+                deployed it across all environments, ensuring seamless
+                compatibility and functionality.
+              </p>
+            </div>
+          </div>
+        </div>
+        <div class="accomplishment-container">
+          <div class="accomplishment-card">
+            <div class="accomplishment-content">
+              <div class="accomplishment-header">
+                <h3>Most Valuable Player</h3>
+                <span class="issuer">RISE Awards - Infosys</span>
+                <span class="award-date">April 2024</span>
+              </div>
+              <div class="accomplishment-description">
+                <p>
+                  Awarded for exceptional performance during the financial year
+                  by effectively addressing critical requirements and
+                  consistently delivering high-quality results on time with zero
+                  defects.
+                </p>
+              </div>
+            </div>
+            <div class="accomplishment-image">
+              <img src="Rise2024.png" alt="Rise Award 2024 Certificate" />
+            </div>
+          </div>
+        </div>
+        <div class="accomplishment-container">
+          <div class="accomplishment-card">
+            <div class="accomplishment-image">
+              <img src="Rise2023.png" alt="Rise Award 2023 Certificate" />
+            </div>
+            <div class="accomplishment-content">
+              <div class="accomplishment-header">
+                <h3>Rookie of the Quarter</h3>
+                <span class="issuer">RISE Awards - Infosys</span>
+                <span class="award-date">March 2023</span>
+              </div>
+              <div class="accomplishment-description">
+                <p>
+                  Awarded Rookie of the Quarter for quickly adapting to the
+                  first project, demonstrating a strong understanding of the
+                  system, and delivering significant customer value during the
+                  initial phase.
+                </p>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section id="contact">
+      <h2>Contact Me</h2>
+      <div class="contact-container">
+        <div class="contact-info">
+          <p>
+            Email:
+            <a href="mailto:yourmail@example.com">nandagopalng7@gmail.com</a>
+          </p>
+          <p>Phone: +91 63817-7872</p>
+        </div>
+
+        <form onsubmit="sendEmail(event)">
+          <input type="text" placeholder="Your Name" required />
+          <input type="email" placeholder="Your Email" required />
+          <textarea placeholder="Your Message" required></textarea>
+          <button type="submit">Send Message</button>
+        </form>
+      </div>
+    </section>
+
+    <footer>
+      <p>&copy; 2025 Nandagopal. All rights reserved.</p>
+    </footer>
+  </body>
+</html>
